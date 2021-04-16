@@ -62,6 +62,14 @@ void addAt(douList* l, int k, int x) {
 
 // Thanh Thien
 void deleteHead(douList* l) {
+    if (l->head == nullptr && l->tail == nullptr)
+        return;
+    if (l->head->next == nullptr) {
+        l->head = nullptr;
+        l->tail = nullptr;
+        return;
+    }
+
 	node* p = l->head->next;
 	node* temp = l->head;
 	p->pre = NULL;
@@ -69,6 +77,14 @@ void deleteHead(douList* l) {
 	delete(temp);
 }
 void deleteTail(douList* l) {
+    if (l->head == nullptr && l->tail == nullptr)
+        return;
+    if (l->head->next == nullptr) {
+        l->head = nullptr;
+        l->tail = nullptr;
+        return;
+    }
+
 	node* p = l->tail->pre;
 	node* temp = l->tail;
 	p->next = NULL;
@@ -77,10 +93,27 @@ void deleteTail(douList* l) {
 }
 
 void deleteAt(douList* l, int k) {
+    if (l->head == nullptr && l->tail == nullptr)
+        return;
+    if (l->head->next == nullptr) {
+        l->head = nullptr;
+        l->tail = nullptr;
+        return;
+    }
+    if (k == 0) {
+        deleteHead(l);
+        return;
+    }
+
 	node* p = l->head;
 	for (int i = 0; i < k - 1; i++) {
 		p = p->next;
 	}
+    if (p->next->next == nullptr) {
+        deleteTail(l);
+        return;
+    }
+
 	node* temp = p->next;
 	node* p2 = temp->next;
 	p->next = p2;
@@ -99,11 +132,10 @@ void printList(douList* l) {
 int main() {
 	douList* list = createList();
 	addTail(list, 6);
-    addTail(list, 7);
-    addTail(list, 8);
-    addTail(list, 9);
+    //addTail(list, 7);
+    //addTail(list, 8);
 
-    deleteAt(list, 2);
+    deleteAt(list, 1);
 	printList(list);
 	return 0;
 }
