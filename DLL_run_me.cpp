@@ -1,4 +1,4 @@
-// MAIN FILE - DOUBLE LINKED LIST
+// MAIN FILE - DOUBLY LINKED LIST
 #include<iostream>
 
 using namespace std;

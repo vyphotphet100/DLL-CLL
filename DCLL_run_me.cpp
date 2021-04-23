@@ -1,4 +1,4 @@
-// MAIN FILE - CIRCULAR DOUBLE LINKED LIST
+// MAIN FILE - CIRCULAR DOUBLY LINKED LIST
 #include<iostream>
 
 using namespace std;
