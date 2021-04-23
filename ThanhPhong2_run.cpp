@@ -80,7 +80,7 @@ void deleteNode(Node** head, int key)
 		free(d);
 	}
 	else
-		cout << "no such keyfound";
+		cout << "no such keyfound\n";
 }
 
 
@@ -141,26 +141,68 @@ void deleteattail(Node** head)
 	}
 }
 
+void deleteIndex(Node ** head, int index)
+{
+	Node *pre = *head;
+	Node *last = *head, *d;
+	if (*head == NULL) {
+		printf("\nList is empty\n");
+		return;
+	}
+	int count = 0;
+
+	if (pre->next == pre) {
+		*head = NULL;
+		return;
+	}
+
+	while (count != index) {
+		last = pre;
+		pre = pre->next;
+		count++;
+	}
+
+	if (count == index)
+	{
+		d = last->next;
+		last->next = d->next;
+		free(d);
+	}
+}
+
 int main()
 {
 	
 	Node* head = NULL;
-
-	
-	push(&head, 2);
-	push(&head, 5);
-	push(&head, 7);
-	push(&head, 8);
-	push(&head, 10);
-
+	int n, *d;
+	cout << "Enter number of Node: ";
+	cin >> n;
+	d= new int(n);
+	for(int i=0;i<n;i++)
+	{ 
+		cout << "Enter value: ";
+		cin >> d[i];
+		push(&head, d[i]);
+	}
+	/*head = NULL;*/
 	cout << "List Before Deletion: ";
 	printList(head);
-
-	deleteNode(&head, 7);
-	DeleteFirst(&head);
-	deleteattail(&head);
-
+	int key,index;
+	cout << "Delete value: ";
+	cin >> key;
+	deleteNode(&head, key);
 	cout << "List After Deletion: ";
+	printList(head);
+	cout << "Delete at: ";
+	cin >> index;
+	deleteIndex(&head, index);
+	cout << "List After Deletion: ";
+	printList(head);
+	DeleteFirst(&head);
+	cout << "List After Deletion of First: ";
+	printList(head);
+	deleteattail(&head);
+	cout << "List After Deletion of tail: ";
 	printList(head);
 
 	return 0;
